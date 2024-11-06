@@ -16,7 +16,7 @@ Read the terminal output before and after to see the difference
 
 export function start() {
   //your code here
-  // return true
+  return true
 };
 
 /******************************************************************************
@@ -31,8 +31,10 @@ received is an even number.
 HINT: Use the modulo operator (%) Google it! 😊
 ******************************************************************************/
 
-export const oddOrEven = () => {
+export const oddOrEven = (num) => {
   //your code here
+  if(num % 2 == 0) return "Even";
+  else return "Odd";
 };
 
 /******************************************************************************
@@ -47,8 +49,9 @@ Example: "This is cool" should return "THIS IS COOL!"
 
 ******************************************************************************/
 
-export function makeMeLoud() {
+export function makeMeLoud(string) {
   //your code here
+  return `${string.toUpperCase()}!`;
 }
 
 /******************************************************************************
@@ -72,8 +75,20 @@ The function should return:
 
 ******************************************************************************/
 
-export const greeter = () => {
+export const greeter = (name, time) => {
   //your code here
+  if(time < 0){
+    return "Invalid time";
+  } else if(time <= 5) {
+    return `Good night ${name}`;
+  } else if(time <= 11) {
+    return `Good morning ${name}`;
+  } else if(time <= 17) {
+    return `Good day ${name}`;
+  } else if(time <= 23) {
+    return `Good evening ${name}`;
+  } else return "Invalid time";
+  
 };
 
 /******************************************************************************
@@ -90,8 +105,11 @@ Example 2: ["One", "Two", "Three", "Four", "Five", "Six"] should return
 ["Two", "Three", "Four", "Five"]
 ******************************************************************************/
 
-export function arrayTrimmer() {
+export function arrayTrimmer(colors) {
   //your code here
+  colors.splice(colors.length-1, 1);
+  colors.splice(0, 1);
+  return colors;
 }
 
 /******************************************************************************
@@ -113,8 +131,8 @@ Example3: "   hard        " should return "fun"
 
 ******************************************************************************/
 
-export const cleanAndFun = () => {
-  //your code here
+export const cleanAndFun = (text) => {
+  return text.trim().replace('hard', 'fun');
 };
 
 /******************************************************************************
@@ -137,7 +155,19 @@ Use array methods to do the following:
  Return the resulting array.
 ******************************************************************************/
 
-export function marvelEditor() {
+export function marvelEditor(heroes) {
+  heroes.splice(0, 3);
+  heroes[heroes.indexOf('Doctor Strange')] = "Skrull";
+  heroes.unshift('Captain America');
+
+  let string = "";
+  for(let i = 0; i < heroes.length-1; i++){
+    heroes[i] += '💪';
+  }
+  heroes.forEach(hero => {
+    string += hero;
+  });
+  return string;
   //your code here
 }
 
@@ -168,8 +198,13 @@ Return "😎Primitive values only😎"
 
 ******************************************************************************/
 
-export function coolMaker() {
-  //your code here
+export function coolMaker(input) {
+  if(typeof input == 'string') return `😎${input}😎`;
+  else if(typeof input == 'number') return `😎${input*2}😎`;
+  else if(typeof input == 'boolean') {
+    if(input == true) return '😎Yeah😎';
+    else return '😎Chill😎';
+  } else return '😎Primitive values only😎';
 }
 
 /******************************************************************************
@@ -195,6 +230,14 @@ Example3: (["One", "Two", "Three"], "Four") --> ["One", "Two", "Three", "Four"]
 Example4: (["One", "Two", "Three"], "Two") --> ["One", "Three"]
 ******************************************************************************/
 
-export const addOrRemove = () => {
-  //your code here
+export const addOrRemove = (colors, color) => {
+  if(colors.includes(color)) {
+    let i = colors.indexOf(color);
+    colors.splice(i, 1);
+    return colors;
+  } else {
+    colors.push(color);
+    return colors;
+  }
+
 };
